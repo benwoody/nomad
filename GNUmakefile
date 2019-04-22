@@ -150,13 +150,13 @@ deps:  ## Install build and development dependencies
 .PHONY: lint-deps
 lint-deps: ## Install linter dependencies
 	@echo "==> Updating linter dependencies..."
-	go get -u github.com/alecthomas/gometalinter
-	gometalinter --install
+	go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
 
 .PHONY: check
 check: ## Lint the source code
 	@echo "==> Linting source code..."
-	@gometalinter \
+	@golangci-lint run \
+		--no-config \
 		--deadline 10m \
 		--vendor \
 		--exclude='.*\.generated\.go' \
